@@ -1,0 +1,11 @@
+framework module AdmostFairAds {
+  umbrella header "AdmostFairAds.h"
+
+  export *
+  module * { export * }
+}
+
+module AdmostFairAds.Swift {
+    header "AdmostFairAds-Swift.h"
+    requires objc
+}

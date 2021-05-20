@@ -1,0 +1,116 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target x86_64-apple-ios9.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AdmostFairAds
+import AdSupport
+@_exported import AdmostFairAds
+import CommonCrypto
+import CoreTelephony
+import Foundation
+import Swift
+import SystemConfiguration
+import UIKit
+import WebKit
+extension UIDevice {
+  public static let modelName: Swift.String
+}
+@objc public enum AFAErrorCodes : Swift.Int {
+  case unknownError = -1
+  case adIsNotReady = 0
+  case noAdData = 1
+  case sdkNotInitialized = 2
+  case adUnitIsNotValid = 3
+  case noInternetConnection = 4
+  case noPlan = 5
+  case noActivePlan = 6
+  case bidResponseNotValid = 7
+  case waitAfterNoFill = 8
+  case bidAlreadyUsed = 9
+  case noMraidJS = 10
+  case noTemplateFound = 11
+  case noHTMLContent = 12
+  case adIsAlreadyShown = 13
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum AFABidType : Swift.Int {
+  case interstitial = 0
+  case rewarded = 1
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc final public class AFABidLoader : ObjectiveC.NSObject {
+  @objc public static func loadBid(_ adUnit: Swift.String, bidType: AdmostFairAds.AFABidType, completion: @escaping (AdmostFairAds.AFABidResponse?, Foundation.NSError?) -> Swift.Void)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc final public class AdmostFairAds : ObjectiveC.NSObject {
+  @objc public static let sdkVersion: Swift.String
+  @objc public static var isInitialized: Swift.Bool {
+    @objc get
+  }
+  @objc public static func start(appId: Swift.String, completion: @escaping (Foundation.NSError?) -> Swift.Void)
+  @objc public static func setUserConsent(_ userConsent: Swift.Bool)
+  @objc public static func setUserChild(_ isUserChild: Swift.Bool)
+  @objc public static func setSubjectToGDPR(_ subjectToGDPR: Swift.Bool)
+  @objc public static func setSubjectToCCPA(_ subjectToCCPA: Swift.Bool)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers public class AFAAd : ObjectiveC.NSObject {
+  @objc public var isLoaded: Swift.Bool {
+    @objc get
+  }
+  @objc public var isLoading: Swift.Bool {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc final public class AFABidResponse : ObjectiveC.NSObject {
+  @objc final public var price: Swift.Double
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol AFARewardedDelegate {
+  @objc optional func rewardedDidReceive(_ rewarded: AdmostFairAds.AFARewarded)
+  @objc optional func rewardedDidFailToReceive(_ rewarded: AdmostFairAds.AFARewarded, error: Foundation.NSError)
+  @objc optional func rewardedDidFailToPresent(_ rewarded: AdmostFairAds.AFARewarded, error: Foundation.NSError)
+  @objc optional func rewardedDidPresent(_ rewarded: AdmostFairAds.AFARewarded)
+  @objc optional func rewardedDidComplete(_ rewarded: AdmostFairAds.AFARewarded)
+  @objc optional func rewardedDidDismiss(_ rewarded: AdmostFairAds.AFARewarded)
+  @objc optional func rewardedDidClick(_ rewarded: AdmostFairAds.AFARewarded)
+}
+@_hasMissingDesignatedInitializers @objc final public class AFARewarded : AdmostFairAds.AFAAd {
+  @objc weak final public var delegate: AdmostFairAds.AFARewardedDelegate?
+  @objc public init()
+  @objc final public func loadAd(_ bidResponse: AdmostFairAds.AFABidResponse, clearingPrice: Swift.Double)
+  @objc final public func showAd(from viewController: UIKit.UIViewController)
+  @objc deinit
+}
+@objc public protocol AFAInterstitialDelegate {
+  @objc optional func interstitialDidReceive(_ interstitial: AdmostFairAds.AFAInterstital)
+  @objc optional func interstitialDidFailToReceive(_ interstitial: AdmostFairAds.AFAInterstital, error: Foundation.NSError)
+  @objc optional func interstitialDidFailToPresent(_ interstitial: AdmostFairAds.AFAInterstital, error: Foundation.NSError)
+  @objc optional func interstitialDidPresent(_ interstitial: AdmostFairAds.AFAInterstital)
+  @objc optional func interstitialDidDismiss(_ interstitial: AdmostFairAds.AFAInterstital)
+  @objc optional func interstitialDidClick(_ interstitial: AdmostFairAds.AFAInterstital)
+}
+@_hasMissingDesignatedInitializers @objc final public class AFAInterstital : AdmostFairAds.AFAAd {
+  @objc weak final public var delegate: AdmostFairAds.AFAInterstitialDelegate?
+  @objc public init()
+  @objc final public func loadAd(_ bidResponse: AdmostFairAds.AFABidResponse, clearingPrice: Swift.Double)
+  @objc final public func showAd(from viewController: UIKit.UIViewController)
+  @objc deinit
+}
+extension AdmostFairAds.AFAErrorCodes : Swift.Equatable {}
+extension AdmostFairAds.AFAErrorCodes : Swift.Hashable {}
+extension AdmostFairAds.AFAErrorCodes : Swift.RawRepresentable {}
+extension AdmostFairAds.AFABidType : Swift.Equatable {}
+extension AdmostFairAds.AFABidType : Swift.Hashable {}
+extension AdmostFairAds.AFABidType : Swift.RawRepresentable {}
